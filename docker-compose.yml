@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  ecom-webapp:
+    image: ecom-webapp:latest
+    container_name: ecom-webapp
+    build:
+      context: .
+    ports:
+      - "3000:80"
+    restart: always
