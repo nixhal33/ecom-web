@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  ecom-webapp:
+    image: kubenix/ecom-webapp:dev
+    container_name: ecom-app
+    ports:
+      - "81:80"
+    restart: always
