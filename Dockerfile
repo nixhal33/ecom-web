@@ -1,7 +1,7 @@
 # ============================================================
 # Stage 1: Build the React app
 # ============================================================
-# ✅ downgrade from 20 to 16 as it was from older version based project.
+# This project is based on node:16 so node 16 version is used.
 FROM node:16-alpine AS builder    
 WORKDIR /app
 

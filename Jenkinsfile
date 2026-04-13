@@ -8,7 +8,6 @@ pipeline {
         }
         stage("Build Docker Images") {
             steps{
-                sh "docker rmi -f ecommerce-webapp:latest"
                 sh "docker build -t e-com-webapp ."
             }
         }
