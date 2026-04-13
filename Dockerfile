@@ -1,7 +1,7 @@
 # ============================================================
 # Stage 1: Build the React app
 # ============================================================
-FROM node:16-alpine AS builder    # ✅ downgrade from 20 to 16
+FROM node:16-alpine AS builder    # ✅ downgrade from 20 to 16 as it was from older version based project.
 WORKDIR /app
 
 # Copy package files first (layer caching)
