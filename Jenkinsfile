@@ -1,7 +1,7 @@
 pipeline {
     agent any
     // environment {
-    //     DOCKERHUB_CREDENTIALS = credentials('dockerhub') not required currently
+    //     DOCKERHUB_CREDENTIALS = credentials('dockerhub') not required current
     // }
     stages {
         stage("Clone code") {
@@ -28,10 +28,8 @@ pipeline {
         }
         stage("ssh into server") {
             steps {
-                sshagent(['ssh-deployment']){
-                   sshagent(['your-ssh-credential-id']) {
+                sshagent(['ssh-deployment']) {
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.92.173.79 "cd /home/ubuntu/ecom-web && docker compose up -d"'
-}
                 }
             }
         }
