@@ -2,7 +2,7 @@ pipeline {
     agent any
     // environment {
     //     DOCKERHUB_CREDENTIALS = credentials('dockerhub') not required current
-    // } DOCKER IMAGES MUST BE PULLED FROM KUBENIX
+    // } DOCKER IMAGES MUST BE PULLED FROM kubenix docker hub
     stages {
         stage("Clone code") {
             steps {
