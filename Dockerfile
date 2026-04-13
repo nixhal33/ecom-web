@@ -1,7 +1,7 @@
 # ============================================================
 # Stage 1: Build the React app
 # ============================================================
-FROM node:20-alpine AS builder
+FROM node:16-alpine AS builder    # ✅ downgrade from 20 to 16
 WORKDIR /app
 
 # Copy package files first (layer caching)
@@ -22,14 +22,10 @@ RUN npm run build
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 
-# Remove default nginx static files
 RUN rm -rf ./*
 
-# Copy built React app from Stage 1
 COPY --from=builder /app/build .
 
-# Expose port 80
 EXPOSE 80
 
-# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
