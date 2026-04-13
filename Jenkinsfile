@@ -29,8 +29,9 @@ pipeline {
         stage("ssh into server") {
             steps {
                 sshagent(['ssh-deployment']){
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.92.173.79 "cd /home/ubuntu/ecom-web
-                    && docker compose up -d"'
+                   sshagent(['your-ssh-credential-id']) {
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.92.173.79 "cd /home/ubuntu/ecom-web && docker compose up -d"'
+}
                 }
             }
         }
