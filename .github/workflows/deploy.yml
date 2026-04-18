@@ -45,7 +45,7 @@ jobs:
                 services:
                   ecom-webapp:
                     image: kubenix/ecom-webapp:dev
-                      container_name: ecom-app
+                    container_name: ecom-app
                     ports:
                       - "81:80"
                     restart: always
