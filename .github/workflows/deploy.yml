@@ -24,3 +24,38 @@ jobs:
             docker tag ecom-webapp ${{ secrets.DOCKERHUB_USERNAME }}/ecom-webapp:$BRANCH_NAME
             docker push ${{ secrets.DOCKERHUB_USERNAME }}/ecom-webapp:$BRANCH_NAME
             
+        - name: Deploy to server
+          uses: appleboy/ssh-action@v0.1.5
+          with:
+            host: ${{ secrets.SERVER_HOST }}
+            username: ${{ secrets.SERVER_USER }}
+            key: ${{ secrets.SERVER_PSSH_KEY }}
+            options: "-o StrictHostKeyChecking=no"
+            script: |
+
+                echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login --username "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+                # Create a directory named ecom-webapp and cd into that directory and write this docker-compose file below 
+
+                mkdir /home/ubuntu/ecom-webapp && cd /home/ubuntu/ecom-webapp
+
+                # Create docker-compose.yml using cat with EOF
+                cat > docker-compose.yml << 'EOF'
+                version: '3.8'
+                services:
+                ecom-webapp:
+                image: kubenix/ecom-webapp:main
+                container_name: ecommerce-web-application
+                ports:
+                - "81:80"
+                restart: always
+                EOF
+      
+                 # Turn down the previous deployment
+                docker compose down
+                
+                # Pull the docker images
+                docker compose pull
+                
+                # Start the docker compose file/Start the deployement
+                docker compose up -d
