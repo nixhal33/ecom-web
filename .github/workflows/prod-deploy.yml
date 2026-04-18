@@ -1,0 +1,25 @@
+name: Deploy ecom-webapp
+
+on:
+  push:
+    branches:
+       - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v6
+        
+        - name: Log into the dockerhub
+          run: |
+            echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login --username "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+        - name: Build and push the docker images to dockerhub / registry
+          run: |
+            BRANCH_NAME=${{ github.ref_name }}
+            docker build -t ecom-webapp .
+            docker tag ecom-webapp ${{ secrets.DOCKERHUB_USERNAME }}/ecom-webapp:$BRANCH_NAME
+            docker push ${{ secrets.DOCKERHUB_USERNAME }}/ecom-webapp:$BRANCH_NAME
