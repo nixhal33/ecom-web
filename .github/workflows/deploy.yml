@@ -43,12 +43,12 @@ jobs:
                 cat > docker-compose.yml << 'EOF'
                 version: '3.8'
                 services:
-                ecom-webapp:
-                image: kubenix/ecom-webapp:main
-                container_name: ecommerce-web-application
-                ports:
-                - "81:80"
-                restart: always
+                  ecom-webapp:
+                    image: kubenix/ecom-webapp:dev
+                      container_name: ecom-app
+                    ports:
+                      - "81:80"
+                    restart: always
                 EOF
       
                  # Turn down the previous deployment
