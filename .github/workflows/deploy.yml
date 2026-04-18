@@ -44,7 +44,7 @@ jobs:
                 version: '3.8'
                 services:
                   ecom-webapp:
-                    image: kubenix/ecom-webapp:dev
+                    image: kubenix/ecom-webapp:main
                     container_name: ecom-app
                     ports:
                       - "81:80"
