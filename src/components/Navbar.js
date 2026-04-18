@@ -93,14 +93,14 @@ class Navbar extends Component {
             <ul className="navbar-nav align-items-center">
               <li className="nav-item ml-5">
                 <Link to="/" className="nav-link">
-                  Products
+                  Hamro Bisesta Haru
                 </Link>
               </li>
             </ul>
             <ul className="navbar-nav align-items-center">
               <ProductConsumer>
                 {value => (<li className="nav-item ml-5">
-                  <input placeholder='Search for products' onChange={(e) => {
+                  <input placeholder='Mobile Electric Saman Haru kinne thau' onChange={(e) => {
                     value.filterProducts(e.target.value);
                   }}>
                   </input>
