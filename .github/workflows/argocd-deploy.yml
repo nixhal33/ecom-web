@@ -45,7 +45,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          cd helm
+          cd kubernetes
           git config --global user.email "nischal.koirala33@gmail.com"
           git config --global user.name "nixhal33"
           git add .
